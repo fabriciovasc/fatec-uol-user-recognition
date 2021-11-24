@@ -6,7 +6,6 @@
 instance/*
 !instance/.gitignore
 .webassets-cache
-.env
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
@@ -334,5 +333,7 @@ fabric.properties
 # CodeStream plugin
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
+
+.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,python,webstorm,visualstudiocode
