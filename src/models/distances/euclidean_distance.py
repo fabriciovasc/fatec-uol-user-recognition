@@ -3,6 +3,9 @@ from .distance_abstract import DistanceAbstract
 
 
 class EuclideanDistance(DistanceAbstract):
+    def __init__(self):
+        pass
+
     def measure(cls, list1, list2):
         distance = 0
         min_len = min(len(list1), len(list2))

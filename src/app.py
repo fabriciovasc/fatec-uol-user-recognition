@@ -19,8 +19,8 @@ def root():
 def get_user_by_id(user_id):
     try:
         return FilterDuplicate(user_id).result
-    except:
-        print('error', Error)
+    except Exception as err:
+        print('error', err)
         return jsonify(
             accuracy=0.0,
             user_duplicates=[]

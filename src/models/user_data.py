@@ -11,7 +11,6 @@ class UserData:
         self.gpu_model = tuple_object[9]
         self.ip = tuple_object[10]
         self.input0_time = self.parse_input(tuple_object[11])
-        print('input time', self.input0_time)
         self.time = datetime.strptime(tuple_object[12], "%Y-%m-%d %H:%M:%S")
 
     def parse_input(self, input0):
