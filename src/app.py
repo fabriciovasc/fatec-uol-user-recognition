@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint, request
 from flask_cors import CORS
+from flask.json import jsonify
 
 from src.models.classifiers.filter_duplicates import FilterDuplicate
 
@@ -16,9 +17,14 @@ def root():
 
 @bp.get('/duplicates/<int:user_id>')
 def get_user_by_id(user_id):
-    max_search = request.args.get('max_search') or 10
-    print(max_search)
-    return FilterDuplicate(user_id, max_search).result
+    try:
+        return FilterDuplicate(user_id).result
+    except Error:
+        print(Error)
+        return jsonify(
+            accuracy=0.0,
+            user_duplicates=[]
+        )
 
 
 def create_app():

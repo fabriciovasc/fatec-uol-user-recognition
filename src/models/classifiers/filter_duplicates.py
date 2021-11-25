@@ -3,7 +3,7 @@ import pymysql
 import random
 from flask.json import jsonify
 from src.models.classifiers.knn import kNNClassifier
-from src.models.distances.manhattan_distance import ManhattanDistance
+from src.models.distances.euclidean_distance import EuclideanDistance
 from src.models.user_data import UserData
 
 K_NUM = 1
@@ -21,17 +21,17 @@ def connect_db():
     return cur
 
 
-def get_users(max_search=10):
+def get_users():
     cur = connect_db()
-    query = 'SELECT * from registration WHERE registration_id < ' + str(max_search)
+    query = 'SELECT * from registration'
     print(query)
     cur.execute(query)
     output = cur.fetchall()
     return output
 
 
-def find_duplicates(user_id, max_search=10):
-    users_raw = get_users(max_search)
+def find_duplicates(user_id):
+    users_raw = get_users()
 
     users_list = list()
 
@@ -48,7 +48,7 @@ def find_duplicates(user_id, max_search=10):
 
     successes = 0
     duplicates = list()
-    knn_classifier = kNNClassifier(ManhattanDistance)
+    knn_classifier = kNNClassifier(EuclideanDistance)
     for test_inst in test_set:
         result_id = knn_classifier.classify(
             test_inst,
@@ -63,17 +63,15 @@ def find_duplicates(user_id, max_search=10):
     return acc, duplicates
 
 
-def filter_accuracy(user_id, max_search=10):
+def filter_accuracy(user_id):
     accuracy = 0
     duplicates = []
     count = 0
-    while accuracy < 0.5:
-        result = find_duplicates(user_id, max_search)
+    while accuracy < 0.9:
+        result = find_duplicates(user_id)
         accuracy = result[0]
         duplicates = result[1]
         print(accuracy, duplicates, count)
-        if accuracy > 0.9:
-            break
         if count >= 50 and accuracy > 0.4:
             break
         count += 1
@@ -85,5 +83,5 @@ def filter_accuracy(user_id, max_search=10):
 
 
 class FilterDuplicate:
-    def __init__(self, user_id, max_search=10):
-        self.result = filter_accuracy(user_id, max_search)
+    def __init__(self, user_id):
+        self.result = filter_accuracy(user_id)
