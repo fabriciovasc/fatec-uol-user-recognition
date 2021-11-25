@@ -3,13 +3,16 @@ from datetime import datetime
 
 class UserData:
     def __init__(self, tuple_object):
-        self.time = datetime.strptime(tuple_object[13], "%Y-%m-%d %H:%M:%S")
         self.user_id = int(tuple_object[0])
-        self.input0_time = self.parse_input(tuple_object[12])
-        self.ip = tuple_object[10]
-        self.browser = tuple_object[6]
         self.email = tuple_object[1]
         self.name = tuple_object[3]
+        self.browser = tuple_object[6]
+        self.so = tuple_object[8]
+        self.gpu_model = tuple_object[9]
+        self.ip = tuple_object[10]
+        self.input0_time = self.parse_input(tuple_object[11])
+        print('input time', self.input0_time)
+        self.time = datetime.strptime(tuple_object[12], "%Y-%m-%d %H:%M:%S")
 
     def parse_input(self, input0):
         splitted = input0.split(' ')
