@@ -78,7 +78,7 @@ class FilterDuplicate:
             print('accuracy', accuracy)
             print('duplicates', duplicates)
             print('counter', count)
-            if count > 10000 and accuracy > 0.5:
+            if count > 10000 and accuracy > 0.3:
                 break
             count += 1
 
