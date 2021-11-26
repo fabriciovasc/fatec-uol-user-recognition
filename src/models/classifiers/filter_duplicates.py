@@ -80,8 +80,6 @@ class FilterDuplicate:
             print('counter', count)
             if count > 10000 and accuracy > 0.5:
                 break
-            # if count >= 50 and accuracy > 0.4:
-            #     break
             count += 1
 
         return jsonify(

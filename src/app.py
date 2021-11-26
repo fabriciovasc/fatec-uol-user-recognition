@@ -18,7 +18,7 @@ def root():
 @bp.get('/duplicates/<int:user_id>')
 def get_user_by_id(user_id):
     try:
-        return FilterDuplicate(user_id).result
+        return FilterDuplicate().filter_accuracy(user_id)
     except Exception as err:
         print('error', err)
         return jsonify(
