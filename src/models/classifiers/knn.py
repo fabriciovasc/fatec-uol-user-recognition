@@ -19,10 +19,7 @@ class kNNClassifier:
                 dist += 1000
             if test_instance.browser != train_instance.browser:
                 dist += 600
-            if test_instance.so != train_instance.so:
-                dist += 600
-            if test_instance.gpu_model != train_instance.gpu_model:
-                dist += 600
+
             if test_instance.time - train_instance.time > timedelta(hours=1):
                 dist += 200
 
