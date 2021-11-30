@@ -52,4 +52,4 @@ Após as previsões do algoritmo, comparamos com o ID do usuário enviado na cha
 - Combinar melhor resultados e score
 - Treinar diferentes formas de comparação com o algoritmo de IA
 - Talvez treinar o algoritmo para usar outros métricas
-- Resultado lento e não efetivo com muitos dados
+- Resultado lento e não efetivo com muitos dados distantes
