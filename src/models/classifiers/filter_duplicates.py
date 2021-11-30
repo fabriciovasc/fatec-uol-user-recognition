@@ -62,8 +62,9 @@ class FilterDuplicate:
             if user_id == result_id:
                 duplicates.append(test_inst.serialize())
                 successes += 1
-
-        acc = round(successes / len(test_set), 2)
+        acc = 0
+        if len(duplicates) > 0:
+            acc = round(successes / len(duplicates), 2)
         return acc, duplicates
 
     def filter_accuracy(self, user_id):
